@@ -6,6 +6,9 @@ TagManager:
   tags:
   - PlayerEyes
   - roomNumbers
+  - floor1
+  - floor1UpStairs
+  - floor2
   layers:
   - Default
   - TransparentFX

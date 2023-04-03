@@ -25,16 +25,24 @@ public class playerController : MonoBehaviour
         destinationPointerPos.y -= 0.9f;
         destinationPointer.transform.position = destinationPointerPos;
     }
-
+    
     private void Update()
     {
-        // if (Input.GetMouseButtonDown(0))
-        // {
-            
-        
-        
-        // }
-        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            // Get the object that was hit
+            GameObject hitObject = hit.collider.gameObject;
+            if (hitObject.tag == "floor1"){
+                
+            }else if (hitObject.tag == "floor1UpStairs"){
+                Debug.Log("stair case has been reached");
+            }else if (hitObject.tag == "floor2"){
+
+            }else if (hitObject.tag == "floor3"){
+
+            }
+        }
 
         if (agent.path != null)
         {
