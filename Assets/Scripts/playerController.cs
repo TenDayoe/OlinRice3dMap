@@ -8,7 +8,7 @@ public class playerController : MonoBehaviour
     public GameObject destination;
     public NavMeshAgent agent;
     public LineRenderer lineRenderer;
-    public GameObject Player;
+    
     private void Start()
     {
     
@@ -33,12 +33,12 @@ public class playerController : MonoBehaviour
         {
             // Get the object that was hit
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.tag == "floor1"){
+            if (hitObject.tag == "floor1" ){
                 
-            }else if (hitObject.tag == "floor1UpStairs"){
-                Debug.Log("stair case has been reached");
-            }else if (hitObject.tag == "floor2"){
-
+            }else if (hitObject.tag == "floor1UpStairs" ){
+               
+            }else if (hitObject.tag == "floor2" ){
+                
             }else if (hitObject.tag == "floor3"){
 
             }
