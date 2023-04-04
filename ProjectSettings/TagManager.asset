@@ -10,6 +10,7 @@ TagManager:
   - floor1UpStairs
   - floor2
   - floor3
+  - floor2UpStairs
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - Water
   - UI
   - player
-  - 
-  - 
-  - 
+  - floor1
+  - floor2
+  - floor3
   - 
   - 
   - 
