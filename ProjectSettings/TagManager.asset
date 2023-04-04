@@ -9,6 +9,7 @@ TagManager:
   - floor1
   - floor1UpStairs
   - floor2
+  - floor3
   layers:
   - Default
   - TransparentFX
