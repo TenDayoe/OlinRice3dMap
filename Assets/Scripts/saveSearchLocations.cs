@@ -20,6 +20,6 @@ public class saveSearchLocations : MonoBehaviour
        
         PlayerPrefs.SetString("currentLocation", currentLocationEntry.GetComponent<TMP_Text>().text);
         PlayerPrefs.SetString("destination", destinationEntry.GetComponent<TMP_Text>().text);
-        SceneManager.LoadScene("Navigation");
+        
     }
 }

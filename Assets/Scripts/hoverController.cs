@@ -12,6 +12,7 @@ public class hoverController : MonoBehaviour
     {
         // get the starting position of the object
         startPos = transform.position;
+        player = GameObject.Find("user");
     }
 
     void Update()
