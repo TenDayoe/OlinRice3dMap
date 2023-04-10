@@ -34,13 +34,11 @@ public class playerController : MonoBehaviour
         {
             // Get the object that was hit
             GameObject hitObject = hit.collider.gameObject;
-            if (transform.position.y < 4.5f){
-                
+            if (transform.position.y < 4.5f){    
                 camera.cullingMask = (1 << LayerMask.NameToLayer("floor1")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
             }else if (transform.position.y >4.5f && transform.position.y < 13.5f){
-               camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
-            }
-            else {
+                camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
+            }else {
                 camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("floor3")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
             }
         }
@@ -48,7 +46,7 @@ public class playerController : MonoBehaviour
         if (agent.path != null)
         {
             lineRenderer.startWidth = 0.3f;
-        lineRenderer.endWidth = 0.3f;
+            lineRenderer.endWidth = 0.3f;
             lineRenderer.positionCount = agent.path.corners.Length;
             lineRenderer.SetPositions(agent.path.corners);
             
