@@ -67,11 +67,16 @@ public class DropDownSearch: MonoBehaviour
     /// </summary>
     List<string> GetAllRoomNumbers()
     {
-       List<string> temp = new List<string>();
-       temp.Add("101");
-       temp.Add("102");
-       temp.Add("103");
-       return temp;
+        Rooms roomsFromJSON = JsonUtility.FromJson<Rooms>(jsonFile.text);
+        List<string> roomNames = new List<string>();
+        foreach (RoomInfo room in roomsFromJSON.rooms) 
+        {
+            Debug.Log("Number: " + room.Number);
+            if(RoomNumberIsValid(room.Number)) {
+                roomNames.Add(room.Number);
+            }
+        }
+        return roomNames;
     }
 
     /// <summary>
