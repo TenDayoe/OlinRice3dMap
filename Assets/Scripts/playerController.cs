@@ -71,6 +71,12 @@ public class playerController : MonoBehaviour
             
             if (Vector3.Dot(tempForwardHolder, dummy.transform.forward) <0.2f){
                 Vector3 newReference = dummy.transform.position; 
+                Vector3 agentforwardVector= agent.transform.forward; 
+                Vector3 dummyforwardVector = agent.transform.forward; 
+                
+
+
+
                 tempForwardHolder = dummy.transform.forward;
                 Debug.Log("Oh dummy has turned ");
                 
