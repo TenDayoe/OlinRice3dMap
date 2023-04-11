@@ -8,9 +8,11 @@ public class playerController : MonoBehaviour
     
     public GameObject destination;
     public NavMeshAgent agent;
+    public NavMeshAgent dummy;
     public LineRenderer lineRenderer;
     public Camera camera;
     public TMP_Text floorText;
+    public Vector3 tempForwardHolder;
     private void Start()
     {
     
@@ -19,15 +21,27 @@ public class playerController : MonoBehaviour
         
         transform.position = GameObject.Find(currentLocation).transform.position;
         agent.Warp(transform.position);
+        dummy.Warp(transform.position);
+        
         destination = GameObject.Find(destinationLocation);
+        dummy.transform.forward = agent.transform.forward;
         agent.SetDestination(destination.transform.position);
+        dummy.SetDestination(destination.transform.position);
         GameObject destinationPointer = GameObject.Find("DestinationPointer");
-
+        tempForwardHolder = agent.transform.forward;
         Vector3 destinationPointerPos = destination.transform.position;
         destinationPointerPos.y -= 0.9f;
         destinationPointer.transform.position = destinationPointerPos;
+
     }
     
+     
+ 
+    IEnumerator setVelocityDefault()
+    {
+        yield return new WaitForSeconds(5);
+        dummy.speed = agent.speed;
+    }
     private void Update()
     {
         RaycastHit hit;
@@ -55,6 +69,12 @@ public class playerController : MonoBehaviour
             lineRenderer.positionCount = agent.path.corners.Length;
             lineRenderer.SetPositions(agent.path.corners);
             
+            if (Vector3.Dot(tempForwardHolder, dummy.transform.forward) <0.2f){
+                Vector3 newReference = dummy.transform.position; 
+                tempForwardHolder = dummy.transform.forward;
+                Debug.Log("Oh dummy has turned ");
+                
+            }
         }
     }
 }
