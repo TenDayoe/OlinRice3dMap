@@ -18,6 +18,11 @@ public class elevator : MonoBehaviour
     public GameObject user; 
     // Update is called once per frame
     
+
+    void Start(){
+
+        
+    }
     void Update()
     {
         //Check Unit Vector
@@ -27,7 +32,9 @@ public class elevator : MonoBehaviour
         }else{
             unitVector = new Vector3(0,-1,0);
         }
-        if (floorLevel == 2 && Mathf.Abs(transform.localPosition.y - floor2Y) >0.1f ){
+
+       
+        if (floorLevel == 2 && Mathf.Abs(transform.localPosition.y - floor2Y) >0.05f ){
             transform.Translate(speed * unitVector * Time.deltaTime);
             user.transform.position = transform.position; 
             Quaternion rot = transform.rotation;
@@ -36,7 +43,7 @@ public class elevator : MonoBehaviour
             if(state == "open"){
                 CloseDoor();
             }
-        }else if (floorLevel == 3 &&Mathf.Abs(transform.localPosition.y - floor3Y) >0.1f){
+        }else if (floorLevel == 3 &&Mathf.Abs(transform.localPosition.y - floor3Y) >0.05f){
             transform.Translate(speed * unitVector * Time.deltaTime);
             user.transform.position = transform.position;
             Quaternion rot = transform.rotation;
@@ -45,7 +52,7 @@ public class elevator : MonoBehaviour
             if(state == "open"){
                 CloseDoor();
             }
-        } else if(floorLevel ==1 && Mathf.Abs(transform.localPosition.y - floor1Y)>0.1f){
+        } else if(floorLevel ==1 && Mathf.Abs(transform.localPosition.y - floor1Y)>0.05f){
             transform.Translate(speed  * unitVector * Time.deltaTime);
             user.transform.position = transform.position;
             Quaternion rot = transform.rotation;
@@ -65,7 +72,7 @@ public class elevator : MonoBehaviour
                 } else if(floorLevel ==1 && Mathf.Abs(transform.localPosition.y - floor1Y)<0.1f){
                     currentFloor = 1;
                 }
-
+                
             }
         }
     }
@@ -98,6 +105,18 @@ public class elevator : MonoBehaviour
    }
     public void CloseDoor(){
         StartCoroutine(CloseDoorCoroutine());
+    }
+    public void SetElevatorInitialPosition(int floorLevel){
+        Vector3 temporary;
+        if (floorLevel == 1){
+            temporary = new Vector3(transform.position.x, floor1Y, transform.position.z);
+        }else if (floorLevel == 2 ){
+            temporary = new Vector3(transform.position.x, floor2Y, transform.position.z);
+        }else{
+            temporary = new Vector3(transform.position.x, floor3Y, transform.position.z);
+        }   
+        transform.position = temporary;
+    
     }
     
 }

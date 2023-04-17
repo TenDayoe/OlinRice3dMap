@@ -26,7 +26,6 @@ public class playerController : MonoBehaviour
     public string usingElevator;
     private string currentLocation ; 
     private string destinationLocation ;
-
     
     public Camera elevatorCam;
     private void Start()
@@ -34,7 +33,6 @@ public class playerController : MonoBehaviour
         
         currentLocation = "OL" + PlayerPrefs.GetString("currentLocation").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
         destinationLocation = "OL"+ PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
-        
         //Elevator Features 
         usingElevator = PlayerPrefs.GetString("usingElevator");
         Debug.Log(usingElevator);
@@ -44,10 +42,11 @@ public class playerController : MonoBehaviour
             currentFloor = currentLocation[2];
             destFloor = destinationLocation[2];
 
-            if (currentFloor !=destFloor ){
+            if (int.Parse(currentFloor.ToString()) !=int.Parse(destFloor.ToString()) ){
                 elev1 = "ElevatorFloorMarker" + currentFloor;
                 elev2 = "ElevatorFloorMarker" + destFloor;
                 destinationLocation = elev1;
+                
                 
                 
             }else{
@@ -57,7 +56,7 @@ public class playerController : MonoBehaviour
         }
         //
         
-
+        Debug.Log(currentLocation);
         transform.position = GameObject.Find(currentLocation).transform.position;
         agent.Warp(transform.position);
         dummy.Warp(transform.position);
@@ -71,7 +70,7 @@ public class playerController : MonoBehaviour
         Vector3 destinationPointerPos = destination.transform.position;
         destinationPointerPos.y -= 0.9f;
         destinationPointer.transform.position = destinationPointerPos;
-        
+
     }
     
      
@@ -122,11 +121,21 @@ public class playerController : MonoBehaviour
     }
 
     void elevatorManagement(){
-       
+        
         if(usingElevator == "yes" && floorReached == false){
 
             if(Vector3.Distance(transform.position, GameObject.Find(elev1).transform.position)<2f && elev1Reached == false){
+                
+                elevator.GetComponent<elevator>().currentFloor = int.Parse(currentFloor.ToString());
                 elevator.GetComponent<elevator>().floorLevel = int.Parse(destFloor.ToString());
+                if(currentFloor == '1'){
+                    elevator.transform.localPosition = new Vector3(elevator.transform.localPosition.x, elevator.GetComponent<elevator>().floor1Y, elevator.transform.localPosition.z);
+                }else if (currentFloor == '2'){
+                    elevator.transform.localPosition = new Vector3(elevator.transform.localPosition.x, elevator.GetComponent<elevator>().floor2Y, elevator.transform.localPosition.z);
+                }else{
+                    elevator.transform.localPosition = new Vector3(elevator.transform.localPosition.x, elevator.GetComponent<elevator>().floor3Y, elevator.transform.localPosition.z);
+                }
+                
                 elev1Reached = true;
                 Debug.Log("Reached Elev1");
                 
@@ -137,7 +146,7 @@ public class playerController : MonoBehaviour
                 Vector3 tempMarkerPos = new Vector3(-10,-10,-10);
                 GameObject.Find("DestinationPointer").transform.position = tempMarkerPos;
             }
-            if(elevator.GetComponent<elevator>().currentFloor == elevator.GetComponent<elevator>().floorLevel && elevator.GetComponent<elevator>().floorLevel == int.Parse(destFloor.ToString())){
+            if(elevator.GetComponent<elevator>().currentFloor == elevator.GetComponent<elevator>().floorLevel && elevator.GetComponent<elevator>().floorLevel == int.Parse(destFloor.ToString()) && elev1Reached == true){
                 Debug.Log("Destination reached");
                 floorReached = true; 
                 elevatorCam.gameObject.SetActive(false);
