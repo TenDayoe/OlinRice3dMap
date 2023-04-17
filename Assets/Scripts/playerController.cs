@@ -28,6 +28,11 @@ public class playerController : MonoBehaviour
     private string destinationLocation ;
     
     public Camera elevatorCam;
+
+    //Check point features
+
+    public GameObject bannerText;
+    public float stepsLeftUntilCheckPoint;
     private void Start()
     {
         
@@ -54,7 +59,7 @@ public class playerController : MonoBehaviour
             }
 
         }
-        //
+        
         
         Debug.Log(currentLocation);
         transform.position = GameObject.Find(currentLocation).transform.position;
@@ -80,8 +85,50 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(5);
         dummy.speed = agent.speed;
     }
+
+    private void updateCheckPoints(){
+        float currentStepCount;
+        if (agent.path.corners.Length >=2){
+            currentStepCount = Mathf.Round(Vector3.Distance(transform.position, agent.path.corners[1])/2);
+        }else{
+        currentStepCount = 0 ; 
+        }
+        string message ;
+        if (stepsLeftUntilCheckPoint != currentStepCount){
+            if(currentStepCount > 2f && agent.path.corners.Length > 2){
+                stepsLeftUntilCheckPoint = currentStepCount; 
+                
+
+                Vector3 agentToChPointVector = (agent.path.corners[1] - transform.position).normalized; 
+                Vector3 agentToNextChPointVector = (agent.path.corners[2] - transform.position).normalized;
+
+
+                Vector3 crossProduct = Vector3.Cross(agentToNextChPointVector, agentToChPointVector); 
+                
+                if (crossProduct ==  Vector3.zero){
+                    message = "Keep going straight for " + currentStepCount.ToString() + " steps";
+                }else if(crossProduct.y < 0){
+                    message = "Turn right after " + currentStepCount.ToString() + " steps";
+                }else{
+                    message = "Turn left after " + currentStepCount.ToString() + " steps";
+                }
+                bannerText.GetComponent<tempBannerTextUpdate>().updateText(message);
+                
+            }else{
+                if (bannerText.GetComponent<TMP_Text>().text != ""){
+                    bannerText.GetComponent<tempBannerTextUpdate>().updateText("");
+                }
+            }
+        }
+    }
+        
+    
     private void Update()
     {
+        //remove 
+        
+        updateCheckPoints();
+        //
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {

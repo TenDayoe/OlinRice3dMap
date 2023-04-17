@@ -17,12 +17,20 @@ public class DropDownSearch: MonoBehaviour
     private List<string> roomNumbers;
 
     //private ManageRooms manageRooms;
-
+    public void openAndroidKeyboard()
+    {
+        TouchScreenKeyboard.Open("", TouchScreenKeyboardType.Default);
+        Invoke("hideInputField", 0.1f);
+    }
+    private void hideInputField()
+    {
+        TouchScreenKeyboard.hideInput = true;
+    }
     void Start()
     {
 
         roomNumbers = GetAllRoomNumbers();
-
+        
         // Add an event listener to the search field to update the dropdown menu as the user types
         searchField.onValueChanged.AddListener(delegate { OnSearchTextChanged(); });
 
