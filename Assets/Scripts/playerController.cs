@@ -36,12 +36,11 @@ public class playerController : MonoBehaviour
         destinationLocation = "OL"+ PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
         
         //Elevator Features 
-        // string usingElevator = PlayerPrefs.GetString("usingElevator").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
-        usingElevator = "yes";
+        usingElevator = PlayerPrefs.GetString("usingElevator");
+        Debug.Log(usingElevator);
         floorReached = false;
         if (usingElevator == "yes"){
-            
-            Debug.Log("Using Elevator");
+
             currentFloor = currentLocation[2];
             destFloor = destinationLocation[2];
 
@@ -113,7 +112,6 @@ public class playerController : MonoBehaviour
                 Vector3 agentforwardVector= agent.transform.forward; 
                 Vector3 dummyforwardVector = agent.transform.forward; 
                 tempForwardHolder = dummy.transform.forward;
-                Debug.Log("Oh dummy has turned ");
             }
 
             
@@ -123,9 +121,9 @@ public class playerController : MonoBehaviour
     }
 
     void elevatorManagement(){
+       
         if(usingElevator == "yes" && floorReached == false){
-            
-            
+
             if(Vector3.Distance(transform.position, GameObject.Find(elev1).transform.position)<2f && elev1Reached == false){
                 elevator.GetComponent<elevator>().floorLevel = int.Parse(destFloor.ToString());
                 elev1Reached = true;
