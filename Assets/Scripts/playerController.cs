@@ -49,6 +49,7 @@ public class playerController : MonoBehaviour
                 elev2 = "ElevatorFloorMarker" + destFloor;
                 destinationLocation = elev1;
                 
+                
             }else{
                 usingElevator = "no";
             }
@@ -128,6 +129,7 @@ public class playerController : MonoBehaviour
                 elevator.GetComponent<elevator>().floorLevel = int.Parse(destFloor.ToString());
                 elev1Reached = true;
                 Debug.Log("Reached Elev1");
+                
                 camera.gameObject.SetActive(false);
                 elevatorCam.gameObject.SetActive(true);
                 
