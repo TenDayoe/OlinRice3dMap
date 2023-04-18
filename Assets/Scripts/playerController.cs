@@ -104,19 +104,22 @@ public class playerController : MonoBehaviour
 
 
                 Vector3 crossProduct = Vector3.Cross(agentToNextChPointVector, agentToChPointVector); 
-                
+                string direction;
                 if (crossProduct ==  Vector3.zero){
                     message = "Keep going straight for " + currentStepCount.ToString() + " steps";
+                    direction = "straight";
                 }else if(crossProduct.y < 0){
                     message = "Turn right after " + currentStepCount.ToString() + " steps";
+                    direction = "right";
                 }else{
+                    direction = "left";
                     message = "Turn left after " + currentStepCount.ToString() + " steps";
                 }
-                bannerText.GetComponent<tempBannerTextUpdate>().updateText(message);
+                bannerText.GetComponent<tempBannerTextUpdate>().updateText(message,direction);
                 
             }else{
                 if (bannerText.GetComponent<TMP_Text>().text != ""){
-                    bannerText.GetComponent<tempBannerTextUpdate>().updateText("");
+                    bannerText.GetComponent<tempBannerTextUpdate>().updateText("","N/A");
                 }
             }
         }
@@ -217,6 +220,10 @@ public class playerController : MonoBehaviour
                 GameObject.Find("DestinationPointer").transform.position = destinationPointerPos;
             }
            
+        }else if (usingElevator == "yes" && floorReached == true){
+            if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 3){
+                bannerText.GetComponent<tempBannerTextUpdate>().updateText("Destination Reached","finished");
+            }
         }
     }
 }
