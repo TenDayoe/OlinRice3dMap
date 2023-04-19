@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-
+using System.IO;
 public class DropDownSearch: MonoBehaviour
 {
     public TMP_InputField searchField;
@@ -14,7 +14,7 @@ public class DropDownSearch: MonoBehaviour
    
 
 
-    private List<string> roomNumbers;
+    public List<string> roomNumbers;
 
     //private ManageRooms manageRooms;
     public void openAndroidKeyboard()
@@ -29,7 +29,7 @@ public class DropDownSearch: MonoBehaviour
     void Start()
     {
 
-        roomNumbers = GetAllRoomNumbers();
+        GetAllRoomNumbers();
         
         // Add an event listener to the search field to update the dropdown menu as the user types
         searchField.onValueChanged.AddListener(delegate { OnSearchTextChanged(); });
@@ -49,7 +49,7 @@ public class DropDownSearch: MonoBehaviour
     public void OnSearchTextChanged()
     {
         // Get the current text in the search field
-        string searchText = searchField.text;
+        string searchText = "OL" +searchField.text;
 
         
         
@@ -73,13 +73,30 @@ public class DropDownSearch: MonoBehaviour
     /// <summary>
     /// Returns a list of room numbers extracted from JSON file
     /// </summary>
-    List<string> GetAllRoomNumbers()
+    void GetAllRoomNumbers()
     {
-       List<string> temp = new List<string>();
-       temp.Add("101");
-       temp.Add("102");
-       temp.Add("103");
-       return temp;
+        List<string> allChildNames = new List<string>();
+       string filePath = Application.dataPath + "/roomList.csv"; // Path to the CSV file
+
+        if (File.Exists(filePath)) // Check if the file exists
+        {
+            StreamReader reader = new StreamReader(filePath);
+
+            while (!reader.EndOfStream)
+            {
+                string[] line = reader.ReadLine().Split(','); // Split the line by commas
+
+                allChildNames.Add(line[0]); // Add the first element of the line (which is the child name) to the list
+            }
+
+            reader.Close(); // Close the reader
+        }
+        else
+        {
+            Debug.LogWarning("CSV file not found!");
+        }
+        roomNumbers = allChildNames;
+    
     }
 
     /// <summary>

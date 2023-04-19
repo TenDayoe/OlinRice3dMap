@@ -36,8 +36,8 @@ public class playerController : MonoBehaviour
     private void Start()
     {
         
-        currentLocation = "OL" + PlayerPrefs.GetString("currentLocation").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
-        destinationLocation = "OL"+ PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
+        currentLocation = PlayerPrefs.GetString("currentLocation").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
+        destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
         //Elevator Features 
         usingElevator = PlayerPrefs.GetString("usingElevator");
         Debug.Log(usingElevator);
