@@ -137,10 +137,10 @@ public class playerController : MonoBehaviour
         {
             // Get the object that was hit
             GameObject hitObject = hit.collider.gameObject;
-            if (transform.position.y < 4.5f){
+            if (transform.position.y < 2f){
                 floorText.text = "Floor 1";
                 camera.cullingMask = (1 << LayerMask.NameToLayer("floor1")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
-            }else if (transform.position.y >4.5f && transform.position.y < 13.5f){
+            }else if (transform.position.y >2f && transform.position.y < 10f){
                floorText.text = "Floor 2";
                camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
             }
@@ -204,7 +204,7 @@ public class playerController : MonoBehaviour
                 
                 
                 //setting the destination location
-                destinationLocation = "OL"+ PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
+                destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
                 destination = GameObject.Find(destinationLocation);
 
                 //setting the starting location
