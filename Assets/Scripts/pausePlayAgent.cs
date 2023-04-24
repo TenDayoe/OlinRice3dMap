@@ -13,6 +13,7 @@ public class pausePlayAgent : MonoBehaviour
     void Start(){
         isPlaying = true;
     }
+    
     public void pausePlayUser(){
         if (isPlaying == true){
             isPlaying = false; 
@@ -24,7 +25,5 @@ public class pausePlayAgent : MonoBehaviour
             img.sprite = pause; 
             agentObj.GetComponent<playerController>().agent.Resume();
         }
-    }
-
-    
+    } 
 }

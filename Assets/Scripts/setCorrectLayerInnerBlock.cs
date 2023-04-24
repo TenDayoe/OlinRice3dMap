@@ -11,10 +11,4 @@ public class setCorrectLayerInnerBlock : MonoBehaviour
             gameObject.layer = transform.parent.gameObject.layer;
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -15,10 +15,4 @@ public class roomMarkerTextController : MonoBehaviour
         groundText = transform.Find("Canvas").Find("groundText").gameObject;
         groundText.GetComponent<TMP_Text>().text = this.gameObject.name;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

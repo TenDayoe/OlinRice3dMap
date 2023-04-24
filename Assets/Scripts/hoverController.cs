@@ -18,22 +18,17 @@ public class hoverController : MonoBehaviour
     void Update()
     {
 
-         Vector3 directionToPlayer = player.transform.position - transform.position;
+        Vector3 directionToPlayer = player.transform.position - transform.position;
 
-        if (directionToPlayer.magnitude < 30f && directionToPlayer.magnitude > 0.1f){
-            
+        if (directionToPlayer.magnitude < 30f && directionToPlayer.magnitude > 0.1f)
+        {
+            // Calculate the rotation needed to face the player
+            Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer) * Quaternion.Euler(0, 180, 0);
 
-        // Calculate the rotation needed to face the player
-        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer) * Quaternion.Euler(0, 180, 0);
-
-        Quaternion yRotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
-transform.rotation = Quaternion.Slerp(transform.rotation, yRotation, Time.deltaTime);
+            Quaternion yRotation = Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, yRotation, Time.deltaTime);
         }
         
-
-
-
-
         // calculate the target position for hovering
         Vector3 targetPos = startPos + new Vector3(0, Mathf.Sin(Time.time * hoverSpeed) * hoverRange, 0);
 

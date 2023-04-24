@@ -8,10 +8,9 @@ public class roomListGenerator : MonoBehaviour
     public GameObject floor2Rooms;
     public GameObject floor3Rooms;
     public List<string> allChildNames= new List<string>();
-    // Start is called before the first frame update
+
     void Start()
     {
-
         GameObject[] floors = {floor1Rooms, floor2Rooms, floor3Rooms};
 
         foreach (GameObject floor in floors)
@@ -39,6 +38,5 @@ public class roomListGenerator : MonoBehaviour
                 writer.WriteLine(roomName);
             }
         }
-
-   
-}}
+    }
+}
