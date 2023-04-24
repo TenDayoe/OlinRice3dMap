@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 183098829}
   - component: {fileID: 183098828}
   - component: {fileID: 183098827}
+  - component: {fileID: 183098831}
   m_Layer: 5
   m_Name: CurrentLocationDropDown
   m_TagString: Untagged
@@ -530,13 +531,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183098825}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f9a1f129e306924899abf91f8ea4348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   searchField: {fileID: 307635644}
   resultsDropdown: {fileID: 183098828}
+  roomNumbers: []
 --- !u!114 &183098828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +637,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183098825}
   m_CullTransparentMesh: 1
+--- !u!114 &183098831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183098825}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65a22a5cc02a7804786fc460aa92f3ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  searchField: {fileID: 307635644}
+  resultsDropdown: {fileID: 183098828}
+  roomNumbers: []
 --- !u!1 &188687369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +1953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchField: {fileID: 1066179927}
   resultsDropdown: {fileID: 1017101749}
+  roomNumbers: []
 --- !u!114 &1017101749
 MonoBehaviour:
   m_ObjectHideFlags: 0
