@@ -131,24 +131,24 @@ public class playerController : MonoBehaviour
         //remove 
         
         updateCheckPoints();
-        //
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit))
-        {
-            // Get the object that was hit
-            GameObject hitObject = hit.collider.gameObject;
-            if (transform.position.y < 4.5f){
-                floorText.text = "Floor 1";
-                camera.cullingMask = (1 << LayerMask.NameToLayer("floor1")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
-            }else if (transform.position.y >4.5f && transform.position.y < 13.5f){
-               floorText.text = "Floor 2";
-               camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
-            }
-            else {
-                floorText.text = "Floor 3";
-                camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("floor3")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
-            }
-        }
+        // //
+        // RaycastHit hit;
+        // if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        // {
+        //     // Get the object that was hit
+        //     GameObject hitObject = hit.collider.gameObject;
+        //     if (transform.position.y < 4.5f){
+        //         floorText.text = "Floor 1";
+        //         camera.cullingMask = (1 << LayerMask.NameToLayer("floor1")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
+        //     }else if (transform.position.y >4.5f && transform.position.y < 13.5f){
+        //        floorText.text = "Floor 2";
+        //        camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
+        //     }
+        //     else {
+        //         floorText.text = "Floor 3";
+        //         camera.cullingMask = (1 << LayerMask.NameToLayer("floor1") | 1 << LayerMask.NameToLayer("floor2") | 1 << LayerMask.NameToLayer("floor3")| 1 << LayerMask.NameToLayer("player")|1 << LayerMask.NameToLayer("UI"));
+        //     }
+        // }
 
         if (agent.path != null)
         {
@@ -204,7 +204,9 @@ public class playerController : MonoBehaviour
                 
                 
                 //setting the destination location
-                destinationLocation = "OL"+ PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
+
+                //made changes here
+                destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
                 destination = GameObject.Find(destinationLocation);
 
                 //setting the starting location
