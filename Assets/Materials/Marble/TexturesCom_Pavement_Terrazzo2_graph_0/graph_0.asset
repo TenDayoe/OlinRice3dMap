@@ -84,7 +84,7 @@ MonoBehaviour:
   HasThumbnail: 1
   CurrentStatePreset: " <sbspreset pkgurl=\"pkg://Tcom_Pavement_Terrazzo2\" label=\"\"
     >\n  <presetinput identifier=\"$outputsize\" uid=\"1516505801\" type=\"8\" value=\"10,10\"
-    />\n  <presetinput identifier=\"outputcolor\" uid=\"838796524\" type=\"3\" value=\"0.59434,0.572262,0.535466,1\"
+    />\n  <presetinput identifier=\"outputcolor\" uid=\"838796524\" type=\"3\" value=\"0.981132,0.981132,0.981132,1\"
     />\n  <presetinput identifier=\"age\" uid=\"838798018\" type=\"0\" value=\"0.236\"
     />\n  <presetinput identifier=\"roughness\" uid=\"838798144\" type=\"0\" value=\"0.238\"
     />\n  <presetinput identifier=\"scale\" uid=\"838795388\" type=\"4\" value=\"2\"
@@ -96,7 +96,7 @@ MonoBehaviour:
   DefaultPreset: " <sbspreset pkgurl=\"pkg://Tcom_Pavement_Terrazzo2\" label=\"\"
     >\n  <presetinput identifier=\"$outputsize\" uid=\"1516505801\" type=\"8\" value=\"10,10\"
     />\n </sbspreset>\n"
-  MaterialShader: Standard
+  MaterialShader: Universal Render Pipeline/Lit
   RenderTextures: 0
   OutputRemaped: 0
   references:
@@ -154,7 +154,7 @@ MonoBehaviour:
           GuiDescription: 
           Type: 3
           WidgetType: 3
-        Data: {x: 0.5943396, y: 0.5722621, z: 0.5354664, w: 1}
+        Data: {x: 0.9811321, y: 0.9811321, z: 0.9811321, w: 1}
         NumericalDescription:
           DefaultValue: {x: 0.6, y: 0.552, z: 0.48, w: 1}
           MinValue: {x: 0, y: 0, z: 0, w: 0}

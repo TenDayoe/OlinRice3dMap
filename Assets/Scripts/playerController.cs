@@ -8,7 +8,6 @@ public class playerController : MonoBehaviour
     
     public GameObject destination;
     public NavMeshAgent agent;
-    public NavMeshAgent dummy;
     public LineRenderer lineRenderer;
     public Camera camera;
     public TMP_Text floorText;
@@ -64,12 +63,9 @@ public class playerController : MonoBehaviour
         Debug.Log(currentLocation);
         transform.position = GameObject.Find(currentLocation).transform.position;
         agent.Warp(transform.position);
-        dummy.Warp(transform.position);
         
         destination = GameObject.Find(destinationLocation);
-        dummy.transform.forward = agent.transform.forward;
         agent.SetDestination(destination.transform.position);
-        dummy.SetDestination(destination.transform.position);
         GameObject destinationPointer = GameObject.Find("DestinationPointer");
         tempForwardHolder = agent.transform.forward;
         Vector3 destinationPointerPos = destination.transform.position;
@@ -79,13 +75,6 @@ public class playerController : MonoBehaviour
     }
     
      
- 
-    IEnumerator setVelocityDefault()
-    {
-        yield return new WaitForSeconds(5);
-        dummy.speed = agent.speed;
-    }
-
     private void updateCheckPoints(){
         float currentStepCount;
         if (agent.path.corners.Length >=2){
@@ -157,13 +146,6 @@ public class playerController : MonoBehaviour
             lineRenderer.positionCount = agent.path.corners.Length;
             lineRenderer.SetPositions(agent.path.corners);
 
-            if (Vector3.Dot(tempForwardHolder, dummy.transform.forward) <0.2f){
-                Vector3 newReference = dummy.transform.position; 
-                Vector3 agentforwardVector= agent.transform.forward; 
-                Vector3 dummyforwardVector = agent.transform.forward; 
-                tempForwardHolder = dummy.transform.forward;
-            }
-
             
         }
         
@@ -191,6 +173,7 @@ public class playerController : MonoBehaviour
                 
                 camera.gameObject.SetActive(false);
                 elevatorCam.gameObject.SetActive(true);
+                GetComponent<Animator>().SetBool("isHappy",true);
                 
                 agent.isStopped = true;
                 Vector3 tempMarkerPos = new Vector3(-10,-10,-10);
@@ -206,6 +189,7 @@ public class playerController : MonoBehaviour
                 //setting the destination location
 
                 //made changes here
+                GetComponent<Animator>().SetBool("isHappy",false);
                 destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
                 destination = GameObject.Find(destinationLocation);
 
@@ -213,9 +197,7 @@ public class playerController : MonoBehaviour
                 
                 transform.position = GameObject.Find(elev2).transform.position;
                 agent.Warp(transform.position);
-                dummy.Warp(transform.position);
                 agent.SetDestination(destination.transform.position);
-                dummy.SetDestination(destination.transform.position);
                 tempForwardHolder = agent.transform.forward;
                 Vector3 destinationPointerPos = destination.transform.position;
                 destinationPointerPos.y -= 0.9f;
@@ -223,8 +205,21 @@ public class playerController : MonoBehaviour
             }
            
         }else if (usingElevator == "yes" && floorReached == true){
-            if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 3){
+            if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 4){
                 bannerText.GetComponent<tempBannerTextUpdate>().updateText("Destination Reached","finished");
+                
+                if(GetComponent<Animator>().GetBool("destinationReached") == false)
+                {
+                    agent.Stop();
+                    GetComponent<Animator>().SetBool("destinationReached",true);
+                    camera.transform.parent = null;
+                    
+                    
+                    Debug.Log("Animation done!");
+                }
+                transform.LookAt(transform.position + camera.transform.rotation * Vector3.back,camera.transform.rotation * Vector3.up);
+                camera.transform.LookAt(camera.transform.position + transform.rotation * Vector3.back,transform.rotation * Vector3.up);
+                
             }
         }
     }

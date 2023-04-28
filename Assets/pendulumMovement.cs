@@ -23,6 +23,6 @@ public class pendulumMovement : MonoBehaviour
         }
         
         transform.Rotate(unitV * (swingSpeed -Mathf.Abs(transform.localRotation.x)),0f,0f);
-        Debug.Log(transform.localRotation.x);
+        
     }
 }
