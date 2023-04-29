@@ -120,6 +120,17 @@ public class playerController : MonoBehaviour
         //remove 
         
         updateCheckPoints();
+
+
+        if (transform.position.y < 4.5f){
+                floorText.text = "Floor 1";
+                
+            }else if (transform.position.y >4.5f && transform.position.y < 13.5f){
+               floorText.text = "Floor 2";
+            }
+            else {
+                floorText.text = "Floor 3";
+        }
         // //
         // RaycastHit hit;
         // if (Physics.Raycast(transform.position, Vector3.down, out hit))

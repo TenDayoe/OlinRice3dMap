@@ -98,6 +98,58 @@ MonoBehaviour:
   - {fileID: 7339783858093814582}
   - {fileID: -8393596517818423755}
   - {fileID: -2340009049372285424}
+  - {fileID: 1551679611540151962}
+  - {fileID: 1129620006030698688}
+--- !u!114 &1129620006030698688
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70afe9e12c7a7ed47911bb608a23a8ff, type: 3}
+  m_Name: SplitToning
+  m_EditorClassIdentifier: 
+  active: 1
+  shadows:
+    m_OverrideState: 1
+    m_Value: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
+  highlights:
+    m_OverrideState: 1
+    m_Value: {r: 0.6415094, g: 0.5547644, b: 0.5547644, a: 1}
+  balance:
+    m_OverrideState: 1
+    m_Value: -79.7
+--- !u!114 &1551679611540151962
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.1
+  contrast:
+    m_OverrideState: 0
+    m_Value: 81.6
+  colorFilter:
+    m_OverrideState: 0
+    m_Value: {r: 0.6597539, g: 0.6597539, b: 0.6597539, a: 1}
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 180
+  saturation:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &7339783858093814582
 MonoBehaviour:
   m_ObjectHideFlags: 3

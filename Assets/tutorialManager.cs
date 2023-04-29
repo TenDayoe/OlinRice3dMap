@@ -17,7 +17,7 @@ public class tutorialManager : MonoBehaviour, IPointerClickHandler
         "Hello, I am Oli. I will be your official Olin Rice navigation guide.",
         "First of all, Welcome to Olin Rice!",
         "Now let's get started with navigation.",
-        "This is the current location input field. Just start typing the room number you want to go to and the intelligent dropdown will help you.",
+        "This is the current location input field. Just start typing the room number the dropdown will help you.",
         "The same thing here... Type in the room number you want to go to.",
         "Great!!!. Now click on the checkbox if you want to use the elevator...",
         "Now all that's left to do is toclick on the start button and I will calculate the best path for you!"
