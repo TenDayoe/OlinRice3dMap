@@ -61,10 +61,10 @@ public class playerController : MonoBehaviour
         
         
         Debug.Log(currentLocation);
-        transform.position = GameObject.Find(currentLocation).transform.position;
+        transform.position = GameObject.Find(currentLocation).transform.Find("point").position;
         agent.Warp(transform.position);
         
-        destination = GameObject.Find(destinationLocation);
+        destination = GameObject.Find(destinationLocation).transform.Find("point").gameObject;
         agent.SetDestination(destination.transform.position);
         GameObject destinationPointer = GameObject.Find("DestinationPointer");
         tempForwardHolder = agent.transform.forward;
@@ -191,7 +191,7 @@ public class playerController : MonoBehaviour
                 //made changes here
                 GetComponent<Animator>().SetBool("isHappy",false);
                 destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
-                destination = GameObject.Find(destinationLocation);
+                destination = GameObject.Find(destinationLocation).transform.Find("point").gameObject;
 
                 //setting the starting location
                 

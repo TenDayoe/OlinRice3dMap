@@ -42,7 +42,7 @@ public class DropDownSearch: MonoBehaviour
 
     void OnDropdownValueChanged()
     {
-        // Set the text of the TMP same as the text of the element in the drop down that was clicked. 
+        
         searchField.text = resultsDropdown.options[resultsDropdown.value].text;
     }
 
@@ -55,6 +55,7 @@ public class DropDownSearch: MonoBehaviour
         
         // Filter the list of room numbers to only include those that start with the search text
         List<string> filteredRoomNumbers = roomNumbers.Where(rn => rn.StartsWith(searchText)).ToList();
+        filteredRoomNumbers.Insert(0,"Choose room : ");
 
         // Clear the drop-down menu and add the filtered room numbers as new options
         resultsDropdown.ClearOptions();
@@ -76,6 +77,7 @@ public class DropDownSearch: MonoBehaviour
     void GetAllRoomNumbers()
     {
         List<string> allChildNames = new List<string>();
+        allChildNames.Add("Choose room : ");
        string filePath = Application.dataPath + "/roomList.csv"; // Path to the CSV file
 
         if (File.Exists(filePath)) // Check if the file exists

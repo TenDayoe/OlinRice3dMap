@@ -11,6 +11,7 @@ TagManager:
   - floor2
   - floor3
   - floor2UpStairs
+  - dropDownItem
   layers:
   - Default
   - TransparentFX
