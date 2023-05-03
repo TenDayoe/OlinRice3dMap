@@ -14,21 +14,17 @@ public class cameraStateChanger : MonoBehaviour
         currentState = "thirdPerson";
     }
 
-    public void stateChange(){
-        if (currentState ==  "birdEye"){
-            currentState = "thirdPerson";
-            Vector3 tempPos=  camera.transform.position; 
-            tempPos.y -= displacement;
-            
-            camera.transform.position = tempPos;
-            camera.transform.Rotate(-30.0f, 0.0f, 0.0f, Space.Self);
-        }else if(currentState == "thirdPerson"){
-            currentState = "birdEye";
-            Vector3 tempPos=  camera.transform.position; 
-            tempPos.y += displacement;
-            
-            camera.transform.position = tempPos;
-            camera.transform.Rotate(30.0f, 0.0f, 0.0f, Space.Self);
-        }
+    public void stateChange() {
+    if (currentState == "fpv") {
+        currentState = "thirdPerson";
+        Vector3 displacementVector = new Vector3(displacement, 0, 0);
+        Vector3 tempPos = camera.transform.position + camera.transform.TransformDirection(displacementVector);
+        camera.transform.position = tempPos;
+    } else if (currentState == "thirdPerson") {
+        currentState = "fpv";
+        Vector3 displacementVector = new Vector3(-displacement, 0, 0);
+        Vector3 tempPos = camera.transform.position + camera.transform.TransformDirection(displacementVector);
+        camera.transform.position = tempPos;
     }
+}
 }

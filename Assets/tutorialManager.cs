@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class tutorialManager : MonoBehaviour, IPointerClickHandler
+public class tutorialManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public dialogueTextAnim dialogueScript; 
@@ -32,7 +32,7 @@ public class tutorialManager : MonoBehaviour, IPointerClickHandler
        }
     }
 
-    private void mainInputsRefresh(){
+    public void mainInputsRefresh(){
         if(currentInstIndex == 0 ){
 
         }else if(currentInstIndex == 3){
@@ -71,21 +71,21 @@ public class tutorialManager : MonoBehaviour, IPointerClickHandler
     //             }
     //     }
     // }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
-        if(eventData.pointerCurrentRaycast.gameObject.name == "DialogueText" || eventData.pointerCurrentRaycast.gameObject.name == "Image"){
-            if(dialogueScript.messageDone = true){
-                currentInstIndex++;
-                if (currentInstIndex < dialogueList.Count)
-                {
-                    dialogueScript.message = dialogueList[currentInstIndex];
-                    mainInputsRefresh();
-                    dialogueScript.startAnim();
-                }
-        }
+    // public void OnPointerClick(PointerEventData eventData)
+    // {
+    //     Debug.Log(eventData.pointerCurrentRaycast.gameObject.name);
+    //     if(eventData.pointerCurrentRaycast.gameObject.name == "DialogueText" || eventData.pointerCurrentRaycast.gameObject.name == "Image"){
+    //         if(dialogueScript.messageDone = true){
+    //             currentInstIndex++;
+    //             if (currentInstIndex < dialogueList.Count)
+    //             {
+    //                 dialogueScript.message = dialogueList[currentInstIndex];
+    //                 mainInputsRefresh();
+    //                 dialogueScript.startAnim();
+    //             }
+    //     }
         
-    }
-    }
+    // }
+    // }
     }
 

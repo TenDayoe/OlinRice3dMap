@@ -18,11 +18,14 @@ public class pausePlayAgent : MonoBehaviour
             isPlaying = false; 
             img.sprite = play;
             agentObj.GetComponent<playerController>().agent.Stop();
+            agentObj.GetComponent<Animator>().SetBool("isHappy",true);
         }
         else{
             isPlaying = true; 
             img.sprite = pause; 
             agentObj.GetComponent<playerController>().agent.Resume();
+            agentObj.GetComponent<Animator>().SetBool("isHappy",false);
+            agentObj.GetComponent<Animator>().Play("a_Walking");
         }
     }
 

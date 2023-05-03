@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour
     public string usingElevator;
     private string currentLocation ; 
     private string destinationLocation ;
+    public GameObject messagePanel;
     
     public Camera elevatorCam;
 
@@ -32,9 +33,11 @@ public class playerController : MonoBehaviour
 
     public GameObject bannerText;
     public float stepsLeftUntilCheckPoint;
+    public Animator characterAnimator;
+    AnimatorClipInfo[] animatorinfo;
     private void Start()
     {
-        
+        characterAnimator = GetComponent<Animator>();
         currentLocation = PlayerPrefs.GetString("currentLocation").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
         destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
         //Elevator Features 
@@ -63,9 +66,15 @@ public class playerController : MonoBehaviour
         Debug.Log(currentLocation);
         transform.position = GameObject.Find(currentLocation).transform.Find("point").position;
         agent.Warp(transform.position);
-        
+        agent.speed = PlayerPrefs.GetFloat("UserSpeed") * 2;
         destination = GameObject.Find(destinationLocation).transform.Find("point").gameObject;
         agent.SetDestination(destination.transform.position);
+        agent.isStopped = true;
+        characterAnimator.SetBool("isHappy",true);
+        messagePanel.SetActive(true);
+        messagePanel.GetComponent<MessagePromptBoardManager>().state = "Init";
+        messagePanel.GetComponent<MessagePromptBoardManager>().create();
+        
         GameObject destinationPointer = GameObject.Find("DestinationPointer");
         tempForwardHolder = agent.transform.forward;
         Vector3 destinationPointerPos = destination.transform.position;
@@ -131,6 +140,36 @@ public class playerController : MonoBehaviour
             else {
                 floorText.text = "Floor 3";
         }
+
+        //Manage animation speed 
+
+        animatorinfo = this.characterAnimator.GetCurrentAnimatorClipInfo(0);
+        if ( animatorinfo[0].clip.name == "a_Walking"){
+            this.characterAnimator.speed = PlayerPrefs.GetFloat("UserSpeed"); 
+            agent.speed = PlayerPrefs.GetFloat("UserSpeed") * 2;
+        }
+        if(usingElevator !="yes"){
+            if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 4){
+                bannerText.GetComponent<tempBannerTextUpdate>().updateText("Destination Reached","finished");
+                
+                if(GetComponent<Animator>().GetBool("destinationReached") == false)
+                {
+                    agent.Stop();
+                    GetComponent<Animator>().SetBool("destinationReached",true);
+                    camera.transform.parent = null;
+                    
+                    
+                    Debug.Log("Animation done!");
+                }
+                transform.LookAt(transform.position + camera.transform.rotation * Vector3.back,camera.transform.rotation * Vector3.up);
+                camera.transform.LookAt(camera.transform.position + transform.rotation * Vector3.back,transform.rotation * Vector3.up);
+                
+            }
+            agent.isStopped = true;
+            messagePanel.SetActive(true);
+            messagePanel.GetComponent<MessagePromptBoardManager>().state = "Dest";
+            messagePanel.GetComponent<MessagePromptBoardManager>().create();
+        }
         // //
         // RaycastHit hit;
         // if (Physics.Raycast(transform.position, Vector3.down, out hit))
@@ -162,7 +201,9 @@ public class playerController : MonoBehaviour
         
         elevatorManagement();
     }
-
+    IEnumerator wait(){
+        yield return new WaitForSeconds(4f);
+    }
     void elevatorManagement(){
         
         if(usingElevator == "yes" && floorReached == false){
@@ -200,7 +241,8 @@ public class playerController : MonoBehaviour
                 //setting the destination location
 
                 //made changes here
-                GetComponent<Animator>().SetBool("isHappy",false);
+               
+                
                 destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
                 destination = GameObject.Find(destinationLocation).transform.Find("point").gameObject;
 
@@ -208,13 +250,22 @@ public class playerController : MonoBehaviour
                 
                 transform.position = GameObject.Find(elev2).transform.position;
                 agent.Warp(transform.position);
+                StartCoroutine("wait");
+                GetComponent<Animator>().Play("a_Walking");
                 agent.SetDestination(destination.transform.position);
+                agent.isStopped = true;
+                messagePanel.SetActive(true);
+                messagePanel.GetComponent<MessagePromptBoardManager>().state = "InElev";
+                messagePanel.GetComponent<MessagePromptBoardManager>().destFloor = int.Parse(destFloor.ToString());
+
+
+
                 tempForwardHolder = agent.transform.forward;
                 Vector3 destinationPointerPos = destination.transform.position;
                 destinationPointerPos.y -= 0.9f;
                 GameObject.Find("DestinationPointer").transform.position = destinationPointerPos;
             }
-           
+        
         }else if (usingElevator == "yes" && floorReached == true){
             if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 4){
                 bannerText.GetComponent<tempBannerTextUpdate>().updateText("Destination Reached","finished");
@@ -230,6 +281,10 @@ public class playerController : MonoBehaviour
                 }
                 transform.LookAt(transform.position + camera.transform.rotation * Vector3.back,camera.transform.rotation * Vector3.up);
                 camera.transform.LookAt(camera.transform.position + transform.rotation * Vector3.back,transform.rotation * Vector3.up);
+                agent.isStopped = true;
+                messagePanel.SetActive(true);
+                messagePanel.GetComponent<MessagePromptBoardManager>().state = "Dest";
+                messagePanel.GetComponent<MessagePromptBoardManager>().create();
                 
             }
         }

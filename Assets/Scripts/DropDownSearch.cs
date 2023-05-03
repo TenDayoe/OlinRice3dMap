@@ -62,8 +62,8 @@ public class DropDownSearch: MonoBehaviour
         resultsDropdown.AddOptions(filteredRoomNumbers);
         
         // Show the drop-down menu
-        resultsDropdown.enabled = false;
-        resultsDropdown.enabled = true;
+        // resultsDropdown.enabled = false;
+        // resultsDropdown.enabled = true;
 
         resultsDropdown.Show();
         searchField.ActivateInputField();

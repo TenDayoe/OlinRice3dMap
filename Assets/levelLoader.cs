@@ -17,8 +17,12 @@ public class levelLoader : MonoBehaviour
     public void loadMapScene(string sceneName){
         button.SetActive(false);
         spinner.SetActive(true);
-
-        StartCoroutine(AsyncSceneLoader(sceneName));
+        if(PlayerPrefs.HasKey("UserSpeed")){
+            StartCoroutine(AsyncSceneLoader(sceneName));
+        }else{
+            SceneManager.LoadScene("SetWalkingSpeed");
+        }
+        
     }
 
 

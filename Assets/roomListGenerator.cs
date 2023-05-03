@@ -29,16 +29,16 @@ public class roomListGenerator : MonoBehaviour
             }
         }
 
-        string filePath = Application.dataPath + "/roomList.csv"; // Path to the file where the CSV will be saved
+        // string filePath = Application.dataPath + "/roomList.csv"; // Path to the file where the CSV will be saved
 
-        // Write the room names to the CSV file
-        using (StreamWriter writer = new StreamWriter(filePath))
-        {
-            foreach (string roomName in allChildNames)
-            {
-                writer.WriteLine(roomName);
-            }
-        }
+        // // Write the room names to the CSV file
+        // using (StreamWriter writer = new StreamWriter(filePath))
+        // {
+        //     foreach (string roomName in allChildNames)
+        //     {
+        //         writer.WriteLine(roomName);
+        //     }
+        // }
 
    
 }}
