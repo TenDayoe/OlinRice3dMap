@@ -15,7 +15,7 @@ Currently, our project is functioning smoothly. However, there are still some mi
 
 Our app is built using the Unity engine, which provides a user-friendly and highly customizable development environment. We have utilized several libraries and assets in the app's creation, including the NavMesh library for agent navigation, TileMap for building representation, texture mapping for building aesthetics, and various Unity assets for working UI components.
 
-To build the app on iPhones, users can utilize X-Code with an IOS developer subscription. Alternatively, the program can be run on a PC by cloning the project from our Github page and loading the folder with Unity. 
+To build the app on iPhones, users can utilize X-Code with an IOS developer subscription. Alternatively, the program can be run on a PC by cloning the project from our Github page and loading the folder with Unity. The app can also be built for Android phones with Unity's Android java build runtimes.
 
 ## Conclusion 
 
