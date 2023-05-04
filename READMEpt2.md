@@ -100,3 +100,4 @@ Once the app has been built onto the iPhone, the user just needs to follow along
 
 ### Conclusion
 ---
+Overall, our project is aimed at creating a helpful navigation tool for individuals studying or visiting the Olin Rice building of Macalester College. We are dedicated to continuing development to address any missing features and to ensure that our product remains accessible to new users and developers alike.
