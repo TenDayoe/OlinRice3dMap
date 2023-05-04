@@ -144,10 +144,15 @@ public class playerController : MonoBehaviour
         //Manage animation speed 
 
         animatorinfo = this.characterAnimator.GetCurrentAnimatorClipInfo(0);
-        if ( animatorinfo[0].clip.name == "a_Walking"){
+        try{
+            if ( animatorinfo[0].clip.name == "a_Walking"){
             this.characterAnimator.speed = PlayerPrefs.GetFloat("UserSpeed"); 
             agent.speed = PlayerPrefs.GetFloat("UserSpeed") * 2;
+            }
+        }catch{
+            Debug.Log("Anim Failed");
         }
+        
         if(usingElevator !="yes"){
             if (Vector3.Distance(transform.position, GameObject.Find(destinationLocation).transform.position) < 4){
                 bannerText.GetComponent<tempBannerTextUpdate>().updateText("Destination Reached","finished");
@@ -163,12 +168,13 @@ public class playerController : MonoBehaviour
                 }
                 transform.LookAt(transform.position + camera.transform.rotation * Vector3.back,camera.transform.rotation * Vector3.up);
                 camera.transform.LookAt(camera.transform.position + transform.rotation * Vector3.back,transform.rotation * Vector3.up);
+                agent.isStopped = true;
+                messagePanel.SetActive(true);
+                messagePanel.GetComponent<MessagePromptBoardManager>().state = "Dest";
+                messagePanel.GetComponent<MessagePromptBoardManager>().create();
                 
             }
-            agent.isStopped = true;
-            messagePanel.SetActive(true);
-            messagePanel.GetComponent<MessagePromptBoardManager>().state = "Dest";
-            messagePanel.GetComponent<MessagePromptBoardManager>().create();
+           
         }
         // //
         // RaycastHit hit;
@@ -258,6 +264,7 @@ public class playerController : MonoBehaviour
                 messagePanel.SetActive(true);
                 messagePanel.GetComponent<MessagePromptBoardManager>().state = "InElev";
                 messagePanel.GetComponent<MessagePromptBoardManager>().destFloor = int.Parse(destFloor.ToString());
+                messagePanel.GetComponent<MessagePromptBoardManager>().create();
 
 
 

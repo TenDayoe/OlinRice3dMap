@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class endScript : MonoBehaviour
 {
+    public GameObject infoPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class endScript : MonoBehaviour
         
     }
     public void EndTrip(){
+        infoPanel.GetComponent<MessagePromptBoardManager>().state = "Init";
         PlayerPrefs.SetString("currentLocation", "");
         PlayerPrefs.SetString("destination","");
         SceneManager.LoadScene("MainMenu");
