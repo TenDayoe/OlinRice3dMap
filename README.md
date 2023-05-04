@@ -91,7 +91,7 @@ Our goal is to create a user-friendly interface that will enable users to quickl
 ### How To Use
 ---
 
-Once the app has been built onto the iPhone, the user just needs to follow along with the tutorial.
+Once the app has been built onto the iPhone, the user just needs to open it and follow along with the tutorial.
 
 ### Breakdown Of The Tools Used
 ---
