@@ -38,8 +38,8 @@ public class playerController : MonoBehaviour
     private void Start()
     {
         characterAnimator = GetComponent<Animator>();
-        currentLocation = PlayerPrefs.GetString("currentLocation").Substring(0, PlayerPrefs.GetString("currentLocation").Length - 1);
-        destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
+        currentLocation = PlayerPrefs.GetString("currentLocation");
+        destinationLocation = PlayerPrefs.GetString("destination");
         //Elevator Features 
         usingElevator = PlayerPrefs.GetString("usingElevator");
         Debug.Log(usingElevator);
@@ -243,7 +243,7 @@ public class playerController : MonoBehaviour
                 //made changes here
                
                 
-                destinationLocation = PlayerPrefs.GetString("destination").Substring(0, PlayerPrefs.GetString("destination").Length -1 );
+                destinationLocation = PlayerPrefs.GetString("destination");
                 destination = GameObject.Find(destinationLocation).transform.Find("point").gameObject;
 
                 //setting the starting location
@@ -254,6 +254,7 @@ public class playerController : MonoBehaviour
                 GetComponent<Animator>().Play("a_Walking");
                 agent.SetDestination(destination.transform.position);
                 agent.isStopped = true;
+                this.GetComponent<userSoundGenerator>().playElevatorSound();
                 messagePanel.SetActive(true);
                 messagePanel.GetComponent<MessagePromptBoardManager>().state = "InElev";
                 messagePanel.GetComponent<MessagePromptBoardManager>().destFloor = int.Parse(destFloor.ToString());

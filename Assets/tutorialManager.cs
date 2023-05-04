@@ -9,10 +9,13 @@ public class tutorialManager : MonoBehaviour
     public dialogueTextAnim dialogueScript; 
     public GameObject curLocationinputField;
     public GameObject destInputField; 
+    public GameObject curDropDown; 
+    public GameObject destDropDown;
     public GameObject checkBox ; 
     public GameObject navButton;
     public GameObject dlBox;
     public GameObject character;
+    public GameObject keyboard;
     public List<string> dialogueList = new List<string>(){
         "Hello, I am Oli. I will be your official Olin Rice navigation guide.",
         "First of all, Welcome to Olin Rice!",
@@ -38,9 +41,12 @@ public class tutorialManager : MonoBehaviour
         }else if(currentInstIndex == 3){
             character.SetActive(false);
             curLocationinputField.SetActive(true);  
+            curDropDown.SetActive(true);
         }else if(currentInstIndex == 4){
             destInputField.SetActive(true);
+            destDropDown.SetActive(true);
         }else if (currentInstIndex == 5){
+            keyboard.SetActive(false);
             checkBox.SetActive(true);
         }else if (currentInstIndex == 6){
             navButton.SetActive(true);

@@ -17,7 +17,7 @@ public class FirstTimeUserChecker : MonoBehaviour
             StartCoroutine("wait");
             SceneManager.LoadScene("Tutorial");
         }else{
-            SceneManager.LoadScene("SearchMenu");
+            SceneManager.LoadScene("MainMenu");
         }
     }
     IEnumerator wait()

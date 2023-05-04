@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class playSoundOnClick : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class playSoundOnClick : MonoBehaviour
     private AudioClip effectSound;
     public void playSound()
     {
-        SoundManager.Instance.PlaySFX(effectSound);
+        try{
+            SoundManager.Instance.PlaySFX(effectSound);
+        }catch(Exception e){
+            Debug.Log("Sound Object does not exist");
+        }
+        
 
     }
 }

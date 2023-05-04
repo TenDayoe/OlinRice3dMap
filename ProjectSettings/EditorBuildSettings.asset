@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SetWalkingSpeed.unity
     guid: c9669e1272ad06d45ae7ecd798288adc
   - enabled: 1
-    path: Assets/Scenes/SearchMenu.unity
-    guid: 2244f4a4411e96440a8b4f00a5910fa4
+    path: Assets/Scenes/MainMenu.unity
+    guid: 90038262e28e5244e9ca568452580df5
   - enabled: 1
     path: Assets/Scenes/Navigation.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

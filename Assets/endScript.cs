@@ -18,6 +18,6 @@ public class endScript : MonoBehaviour
     public void EndTrip(){
         PlayerPrefs.SetString("currentLocation", "");
         PlayerPrefs.SetString("destination","");
-        SceneManager.LoadScene("SearchMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
