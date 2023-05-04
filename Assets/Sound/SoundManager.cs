@@ -23,8 +23,8 @@ public class SoundManager : MonoBehaviour
     {
         
     }
-    public void PlayMusic(){
-
+    public void toggleMusic(){
+        musicSource.mute = !musicSource.mute;
     }
     public void PlaySFX(AudioClip aclip){
         SFXSource.PlayOneShot(aclip);

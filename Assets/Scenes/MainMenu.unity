@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4003,6 +4003,10 @@ PrefabInstance:
       propertyPath: OnScreenKeyboard
       value: 
       objectReference: {fileID: 1833540942}
+    - target: {fileID: 2130576669668350598, guid: af637a6c9def1e04a9e5d1e6db87a67f, type: 3}
+      propertyPath: roomList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2130576669668350600, guid: af637a6c9def1e04a9e5d1e6db87a67f, type: 3}
       propertyPath: m_Name
       value: CurrentLocationHolderButton (2)
@@ -4112,6 +4116,10 @@ PrefabInstance:
       propertyPath: OnScreenKeyboard
       value: 
       objectReference: {fileID: 1833540942}
+    - target: {fileID: 3119533218710865372, guid: 3b96dc83d92d01f44af157765dcadfd4, type: 3}
+      propertyPath: roomList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3119533218710865374, guid: 3b96dc83d92d01f44af157765dcadfd4, type: 3}
       propertyPath: m_Name
       value: DestinationLocationButton (1)
