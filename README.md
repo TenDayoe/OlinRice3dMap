@@ -95,6 +95,41 @@ Once the app has been built onto the iPhone, the user just needs to open it and 
 
 ### Breakdown Of The Tools Used
 ---
+Tools :
+
+1.Unity Pro Builder
+All the low poly walls were created using Unity's probuilder tool. First a basic prototype was created using Unity's 3d tile mapper and then probuilder was used to create a final low triangle mesh. 
+
+2.Navmesh AI
+For an optimized path finding, we used the node based navmesh AI tool to navigate between different rooms. The door of each room was used to represent the room entity and each door has a pointer object in front of the it which is used as the reference point. 
+
+3.URP 
+For more realistic graphics, we used Unity's Universal rendering pipeline along with the unity's post processing tools such as Bloom and Depth of Field. 
+
+4.Lighting and Texturing
+To reduce runtime system load, we baked all of the lightings such area light, emissive materials to the static materials i.e walls, floors, furniture etc. This reduced the GPU comsumption of the 3d application heavily. Moreover, to reduce production time, we used a simple ceiling material with an emissive property that could replicate the entire ceiling just by repeating the UV itself. 
+
+5.Ambient Occlusion : 
+
+The project also has the option to use Ambient occlusion if the mobile device cannot handle the GPU requirements. But through our tests, the application was consuming only about 30% of the GPU on the latest iphones. Therefore, by default we have turned off this feature. 
+
+6. PlayerPrefs : 
+
+Most of the data that is shared between different scenes is stored and shared using Unity's Player Prefs. 
+Code Structure : 
+
+There are a few central classes/scripts that control the core functionality of the application : 
+
+1. PlayerController: 
+- This script controls and sets up the navmesh for navigation between user's current location and user's destination location. This script also controls the users animations, in-navigation audio effects. Chaning the state of the script that manages the elevator. 
+
+2. SoundManager:
+- This script controls the audio effects and the music in the application. A singleton pattern was used here to make sure that the music continues to play during scene transitions. 
+
+3.Elevator:
+-This script controls the state of the elevator and also changes the elevation of the elavator by communicating the PlayerController class. 
+
+
 
 
 
