@@ -7,7 +7,8 @@ public class cameraStateChanger : MonoBehaviour
     public string defaultState = "thirdPerson";
     public string currentState ;
     public Camera camera;
-    public float displacement = 10f;
+    public GameObject agent;
+    public float displacement ;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,14 +17,12 @@ public class cameraStateChanger : MonoBehaviour
 
     public void stateChange() {
     if (currentState == "fpv") {
-        currentState = "thirdPerson";
-        Vector3 displacementVector = new Vector3(displacement, 0, 0);
-        Vector3 tempPos = camera.transform.position + camera.transform.TransformDirection(displacementVector);
+        Vector3 tempPos = camera.transform.position -(agent.transform.forward) * displacement;
         camera.transform.position = tempPos;
+        currentState = "thirdPerson";
     } else if (currentState == "thirdPerson") {
         currentState = "fpv";
-        Vector3 displacementVector = new Vector3(-displacement, 0, 0);
-        Vector3 tempPos = camera.transform.position + camera.transform.TransformDirection(displacementVector);
+        Vector3 tempPos = camera.transform.position + (agent.transform.forward) * displacement;
         camera.transform.position = tempPos;
     }
 }
